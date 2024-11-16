@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>To-Do List</h1>
+  <a class="action-button" href="{% url 'task_create' %}">할 일 추가</a>
+  <form id="toggleForm">
+    {% csrf_token %}
+  </form>
+  <ul>
+    {% if task_list %}
+      {% for task in task_list %}
+        <li class="{% if task.completed %}completed{% endif %}">
+          <div class="task-item">
+            <div class="task-info">
+              <form method="post" action="{% url 'toggle_complete' task.id %}">
+                {% csrf_token %}
+                <input type="checkbox" 
+                       class="task-checkbox" 
+                       onchange="this.form.submit()"
+                       {% if task.completed %}checked{% endif %}>
+              </form>
+              <a href="{% url 'task_detail' task.id %}">{{task.title}}</a>
+              {% if task.completed %}
+                <span class="status-badge completed">완료</span>
+              {% else %}
+                <span class="status-badge pending">진행중</span>
+              {% endif %}
+            </div>
+            <span class="task-date">{{ task.created_at|date:"Y.m.d H:i:s" }}</span>
+          </div>
+        </li>
+      {% endfor %}
+    {% endif %}
+  </ul>
+{% endblock content %}

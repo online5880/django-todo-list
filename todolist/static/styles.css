@@ -1,0 +1,351 @@
+:root {
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --blue-600: #2563eb;
+    --blue-700: #1d4ed8;
+    --red-600: #dc2626;
+    --red-700: #b91c1c;
+}
+
+/* 기본 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.5;
+    color: var(--gray-800);
+    background-color: var(--gray-100);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 네비게이션 */
+nav {
+    width: 100%;
+    max-width: 800px;
+    background-color: white;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 0 0 0.5rem 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    color: var(--gray-700);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    transition: background-color 0.2s;
+}
+
+nav a:hover {
+    background-color: var(--gray-100);
+}
+
+/* 컨테이너 */
+.container {
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 */
+h1 {
+    color: var(--gray-900);
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+h2 {
+    color: var(--gray-700);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+/* 버튼 스타일 */
+.action-button,
+button[type="submit"] {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    min-width: 120px;
+    height: 40px;
+    border: none;
+    border-radius: 0.375rem;
+    background-color: var(--gray-600);
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    line-height: 25px;
+}
+
+.action-button:hover,
+button[type="submit"]:hover {
+    background-color: var(--gray-700);
+}
+
+/* 삭제 버튼 */
+.delete-button {
+    background-color: var(--red-600);
+}
+
+.delete-button:hover {
+    background-color: var(--red-700);
+}
+
+/* 수정 버튼 */
+.edit-button {
+    background-color: var(--blue-600);
+}
+
+.edit-button:hover {
+    background-color: var(--blue-700);
+}
+
+/* 취소 버튼 */
+.cancel-button {
+    background-color: var(--gray-500);
+}
+
+.cancel-button:hover {
+    background-color: var(--gray-600);
+}
+
+/* 버튼 그룹 */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* 입력 필드 */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* 테이블 */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.5rem;
+}
+
+td {
+    padding: 0.5rem 0;
+}
+
+/* 리스트 스타일 */
+ul {
+    list-style: none;
+    margin: 1.5rem 0;
+}
+
+li {
+    background-color: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    transition: transform 0.2s;
+}
+
+li:hover {
+    transform: translateX(5px);
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.task-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.status-badge.completed {
+    background-color: var(--gray-200);
+    color: var(--gray-600);
+}
+
+.status-badge.pending {
+    background-color: var(--gray-100);
+    color: var(--gray-700);
+}
+
+.task-date {
+    color: var(--gray-500);
+    font-size: 0.875rem;
+}
+
+li.completed {
+    background-color: var(--gray-50);
+}
+
+li.completed a {
+    color: var(--gray-500);
+    text-decoration: line-through;
+}
+
+.task-item a {
+    color: var(--gray-800);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.task-item span {
+    color: var(--gray-500);
+    font-size: 0.875rem;
+}
+
+/* 상세 페이 */
+.detail-container {
+    padding: 1.5rem;
+}
+
+.task-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.task-content {
+    background-color: var(--gray-50);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 640px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
+    .action-button,
+    button[type="submit"],
+    .delete-button {
+        width: 100%;
+    }
+    
+    .task-item {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+} 
+
+/* 삭제 페이지 스타일 */
+.delete-container {
+    text-align: center;
+    padding: 2rem;
+}
+
+.delete-warning {
+    background-color: var(--gray-100);
+    border: 2px solid var(--gray-300);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 500px;
+}
+
+.warning-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.warning-text {
+   
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.delete-title {
+ 
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 1rem;
+    background-color: var(--gray-50);
+    border-radius: 0.375rem;
+    margin: 1rem 0;
+}
+
+.login-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.login-button-container button {
+    min-width: 120px;
+}
+
+.task-checkbox {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.task-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+} 

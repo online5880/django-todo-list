@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="detail-container">
+  <div class="task-header">
+    <h1>{{task.title}}</h1>
+  </div>
+  
+  <div class="task-content">
+    <div class="content-section">
+      <h2>할 일 내용</h2>
+      <p>{{task.description|linebreaks}}</p>
+    </div>
+  </div>
+
+  <div class="button-group">
+    <a class="action-button edit-button" href="{% url 'task_update' task.id%}">수정</a>
+    <a class="action-button delete-button" href="{% url 'task_delete' task.id%}">삭제</a>
+    <a class="action-button return-button" href="{% url 'task_list'%}">목록으로</a>
+  </div>
+</div>
+{% endblock content %}
