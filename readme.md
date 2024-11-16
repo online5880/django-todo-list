@@ -100,10 +100,17 @@ REST API와 사용자 인증 기능을 포함하며, Docker 및 Docker Compose�
 ```mermaid
 sequenceDiagram
     actor User
+    participant Docker
     participant Browser
     participant Django
     participant TodoApp
     participant Database
+
+    %% Docker Compose 실행
+    User->>Docker: Docker Compose 실행
+    Docker->>Database: MySQL 컨테이너 시작
+    Docker->>Django: Django 컨테이너 시작
+    Django->>Database: 데이터베이스 연결 대기 (wait-for-it.sh)
 
     %% 로그인 프로세스
     User->>Browser: 로그인 페이지 접속
@@ -111,49 +118,42 @@ sequenceDiagram
     Django->>Browser: login.html 반환
     User->>Browser: 로그인 정보 입력
     Browser->>Django: POST /login/
-    Django->>Database: 사용자 인증
-    Database-->>Django: 인증 결과
+    Django->>TodoApp: 로그인 요청 처리
+    TodoApp->>Database: 사용자 인증
+    Database-->>TodoApp: 인증 결과
+    TodoApp->>Django: 인증 성공
     Django->>Browser: 리다이렉트 (task_list)
 
     %% Todo 리스트 조회 (READ)
-    Browser->>TodoApp: GET /task/
+    Browser->>Django: GET /task/
+    Django->>TodoApp: Task 조회 요청
     TodoApp->>Database: 사용자의 Task 조회
     Database-->>TodoApp: Task 목록 반환
-    TodoApp->>Browser: task_list.html 렌더링
+    TodoApp->>Django: Task 데이터 반환
+    Django->>Browser: task_list.html 렌더링
 
     %% Todo 항목 생성 (CREATE)
     User->>Browser: 할 일 추가 클릭
-    Browser->>TodoApp: GET /task/add/
+    Browser->>Django: GET /task/add/
+    Django->>TodoApp: Task 생성 요청
     TodoApp->>Browser: task_create.html 반환
     User->>Browser: 할 일 정보 입력
-    Browser->>TodoApp: POST /task/add/
+    Browser->>Django: POST /task/add/
+    Django->>TodoApp: 새로운 Task 저장 요청
     TodoApp->>Database: 새로운 Task 저장
     Database-->>TodoApp: 저장 완료
-    TodoApp->>Browser: 리다이렉트 (task_list)
-
-    %% Todo 항목 수정 (UPDATE)
-    User->>Browser: 할 일 수정 클릭
-    Browser->>TodoApp: GET /task/<id>/edit/
-    TodoApp->>Browser: task_update.html 반환
-    User->>Browser: 수정된 할 일 정보 입력
-    Browser->>TodoApp: POST /task/<id>/edit/
-    TodoApp->>Database: Task 정보 업데이트
-    Database-->>TodoApp: 업데이트 완료
-    TodoApp->>Browser: 리다이렉트 (task_list)
-
-    %% Todo 항목 삭제 (DELETE)
-    User->>Browser: 삭제 버튼 클릭
-    Browser->>TodoApp: POST /task/<id>/delete/
-    TodoApp->>Database: Task 삭제 요청
-    Database-->>TodoApp: 삭제 완료
-    TodoApp->>Browser: 리다이렉트 (task_list)
+    TodoApp->>Django: Task 생성 완료
+    Django->>Browser: 리다이렉트 (task_list)
 
     %% Todo 상태 토글 (COMPLETE/INCOMPLETE)
     User->>Browser: 체크박스 클릭
-    Browser->>TodoApp: POST /task/<id>/toggle/
+    Browser->>Django: POST /task/<id>/toggle/
+    Django->>TodoApp: Task 상태 업데이트 요청
     TodoApp->>Database: Task 상태 업데이트
     Database-->>TodoApp: 업데이트 완료
-    TodoApp->>Browser: 리다이렉트 (task_list)
+    TodoApp->>Django: 상태 업데이트 완료
+    Django->>Browser: 리다이렉트 (task_list)
+
 
 ```
 
