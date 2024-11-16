@@ -249,23 +249,43 @@ curl -X DELETE http://127.0.0.1:8000/task/api/tasks/1/ -H "Authorization: Token 
 
 ## 결과 이미지
 
+- 로그인 페이지
+
 <img src="https://github.com/online5880/django-todo-list/blob/main/images/todo-list-login.png?raw=true" width="100%" height="100%"/>
+
+- 회원가입 페이지
 
 <img src="https://github.com/online5880/django-todo-list/blob/main/images/todo-list-signup.png?raw=true" width="100%" height="100%"/>
 
+- 리스트 페이지
+
 <img src="https://github.com/online5880/django-todo-list/blob/main/images/todo-list.png?raw=true" width="100%" height="100%"/>
+
+- 생성 페이지
 
 <img src="https://github.com/online5880/django-todo-list/blob/main/images/todo-list-add.png?raw=true" width="100%" height="100%"/>
 
+- 업데이트 페이지
+
 <img src="https://github.com/online5880/django-todo-list/blob/main/images/todo-list-update.png?raw=true" width="100%" height="100%"/>
+
+- 삭제 페이지
 
 <img src="https://github.com/online5880/django-todo-list/blob/main/images/todo-list-delete.png?raw=true" width="100%" height="100%"/>
 
+- 상세 페이지
+
 <img src="https://github.com/online5880/django-todo-list/blob/main/images/todo-list-detail.png?raw=true" width="100%" height="100%"/>
+
+- 리스트 체크(Ajax)
 
 <img src="https://github.com/online5880/django-todo-list/blob/main/images/todo-list-chek.png?raw=true" width="100%" height="100%"/>
 
+- REST API 페이지
+
 <img src="https://github.com/online5880/django-todo-list/blob/main/images/todo-list-rest.png?raw=true" width="100%" height="100%"/>
+
+- Swagger 페이지
 
 <img src="https://github.com/online5880/django-todo-list/blob/main/images/todo-list-swagger.png?raw=true" width="100%" height="100%"/>
 
