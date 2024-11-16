@@ -115,13 +115,13 @@ sequenceDiagram
     Database-->>Django: 인증 결과
     Django->>Browser: 리다이렉트 (task_list)
 
-    %% Todo 리스트 조회
+    %% Todo 리스트 조회 (READ)
     Browser->>TodoApp: GET /task/
     TodoApp->>Database: 사용자의 Task 조회
     Database-->>TodoApp: Task 목록 반환
     TodoApp->>Browser: task_list.html 렌더링
 
-    %% Todo 항목 생성
+    %% Todo 항목 생성 (CREATE)
     User->>Browser: 할 일 추가 클릭
     Browser->>TodoApp: GET /task/add/
     TodoApp->>Browser: task_create.html 반환
@@ -131,12 +131,30 @@ sequenceDiagram
     Database-->>TodoApp: 저장 완료
     TodoApp->>Browser: 리다이렉트 (task_list)
 
-    %% Todo 상태 토글
+    %% Todo 항목 수정 (UPDATE)
+    User->>Browser: 할 일 수정 클릭
+    Browser->>TodoApp: GET /task/<id>/edit/
+    TodoApp->>Browser: task_update.html 반환
+    User->>Browser: 수정된 할 일 정보 입력
+    Browser->>TodoApp: POST /task/<id>/edit/
+    TodoApp->>Database: Task 정보 업데이트
+    Database-->>TodoApp: 업데이트 완료
+    TodoApp->>Browser: 리다이렉트 (task_list)
+
+    %% Todo 항목 삭제 (DELETE)
+    User->>Browser: 삭제 버튼 클릭
+    Browser->>TodoApp: POST /task/<id>/delete/
+    TodoApp->>Database: Task 삭제 요청
+    Database-->>TodoApp: 삭제 완료
+    TodoApp->>Browser: 리다이렉트 (task_list)
+
+    %% Todo 상태 토글 (COMPLETE/INCOMPLETE)
     User->>Browser: 체크박스 클릭
     Browser->>TodoApp: POST /task/<id>/toggle/
     TodoApp->>Database: Task 상태 업데이트
     Database-->>TodoApp: 업데이트 완료
     TodoApp->>Browser: 리다이렉트 (task_list)
+
 ```
 
 ---
